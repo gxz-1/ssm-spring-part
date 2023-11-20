@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 此处要添加一些约束，配置文件的标签并不是随意命名 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    https://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 1.无参构造类的组件创建-->
+    <bean id="happyPart" class="com.gxz.ioc_01.Happy"/>
+<!-- 2.静态工厂类的组件创建(要求传入创建对象的方法，且必须为静态方法)-->
+    <bean id="staticfactoryPart" class="com.gxz.ioc_01.StaticFactory" factory-method="createInstance"/>
+<!-- 3.非静态工厂类的组件创建(先配置工厂类的组件，再配置工厂类的非静态方法来构造组件)-->
+    <bean id="defaultFactory" class="com.gxz.ioc_01.DefaultFactory"/>
+    <bean id="factoryPart" factory-bean="defaultFactory" factory-method="createInstance"/>
+</beans>
