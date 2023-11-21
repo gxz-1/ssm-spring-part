@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 此处要添加一些约束，配置文件的标签并不是随意命名 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 0.先添加被注入的bean    -->
+    <bean id="userDao" class="com.gxz.ioc_02.UserDao" />
+
+    <!-- 1.单个构造参数注入   -->
+    <bean id="userService" class="com.gxz.ioc_02.UserService">
+        <!-- 参数二选一 value：直接传字面值  ref：引用其他bean       -->
+        <constructor-arg value="" ref="userDao"/>
+    </bean>
+
+    <!-- 2.多个构造参数注入   -->
+    <bean id="userService1" class="com.gxz.ioc_02.UserService">
+        <!-- 2.1按形参顺序填写 -->
+        <constructor-arg value="18"/>
+        <constructor-arg value="老六"/>
+        <constructor-arg ref="userDao"/>
+    </bean>
+    <bean id="userService2" class="com.gxz.ioc_02.UserService">
+        <!-- 2.2通过构造参数的名字name或者index索引（0，1，2） -->
+        <constructor-arg name="name" value="18"/>
+        <constructor-arg name="age" value="老六"/>
+        <constructor-arg name="userDao" ref="userDao"/>
+    </bean>
+
+    <!-- 3.set方法注入 -->
+    <bean id="userServiceSet" class="com.gxz.ioc_02.UserService">
+        <!-- name表示set方法名，如setUd设置为ud(首字母小写)       -->
+        <property name="ud" ref="userDao"/>
+        <property name="age" value="23"/>
+        <property name="name" value="老八"/>
+    </bean>
+</beans>
