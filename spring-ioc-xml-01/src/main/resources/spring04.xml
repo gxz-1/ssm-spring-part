@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 此处要添加一些约束，配置文件的标签并不是随意命名 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 设置组件的周期方法（init/destory）  -->
+    <bean id="javaBean1" class="com.gxz.ioc_04.JavaBean" init-method="init"  destroy-method="clear"/>
+
+<!-- 设置组件的作用域scope -->
+<!--    在IoC容器中，bean标签对应的信息转成Spring内部 `BeanDefinition` 对象，
+        `BeanDefinition`包含定义的信息（id,class,属性等等）,这意味着，`BeanDefinition`与`类`概念一样，
+        SpringIoC容器根据`BeanDefinition`对象反射创建对象实例。
+
+        scope取值 prototype :在IOC容器中getBean()创建对象时，可以有多个实例
+        scope取值 singleton ：默认，同一个bean只有一个实例(单例模式)
+        -->
+    <bean id="javaBean2" class="com.gxz.ioc_04.JavaBean" scope="prototype"/>
+</beans>

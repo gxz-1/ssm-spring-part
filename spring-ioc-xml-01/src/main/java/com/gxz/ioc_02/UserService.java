@@ -16,6 +16,7 @@ public class UserService {
         this.name = name;
     }
     //3.set方法
+    public UserService(){}//必须要有无参构造
     public void setUd(UserDao ud) {
         this.ud = ud;
     }
