@@ -9,6 +9,7 @@ public class StaticFactory {
     }
 
     public static StaticFactory createInstance() {
-        return sf;
+        //在这里编写工厂方法的实例化逻辑
+        return sf;//返回实例化对象供ioc容器管理
     }
 }

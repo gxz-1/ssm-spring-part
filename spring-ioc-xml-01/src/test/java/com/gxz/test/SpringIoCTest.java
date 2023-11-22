@@ -65,9 +65,18 @@ public class SpringIoCTest {
         System.out.print("bean1==bean2:");
         System.out.println(bean1==bean2);
 
+        //标准化工厂factoryBean类的创建测试
+        JavaBean bean3=classPathXmlApplicationContext.getBean("javaBean3",JavaBean.class);
+        //factoryBean工厂也会加入ioc容器，名字叫“&id”
+        Object beanfactory = classPathXmlApplicationContext.getBean("&javaBean3");
+        System.out.println("beanfactory的类型是："+beanfactory);
+
         //ioc容器正常结束时自动调用destory方法(如果立即释放程序来不及调用destory)
         classPathXmlApplicationContext.close();
     }
+
+
+
 
 
 }

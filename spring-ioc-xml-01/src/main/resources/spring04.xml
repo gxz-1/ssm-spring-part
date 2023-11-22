@@ -17,4 +17,8 @@
         scope取值 singleton ：默认，同一个bean只有一个实例(单例模式)
         -->
     <bean id="javaBean2" class="com.gxz.ioc_04.JavaBean" scope="prototype"/>
+
+    <!-- 配置FactoryBean标准化工厂类  -->
+    <!-- class传入工厂类 id表示getOjbect方法返回的对象的标识    -->
+    <bean id="javaBean3" class="com.gxz.ioc_04.JavaBeanFactoryBean" />
 </beans>
