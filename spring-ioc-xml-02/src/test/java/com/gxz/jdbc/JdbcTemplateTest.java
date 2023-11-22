@@ -1,6 +1,7 @@
 package com.gxz.jdbc;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.gxz.Controller.StudentController;
 import com.gxz.pojo.Student;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -66,5 +67,14 @@ public class JdbcTemplateTest {
         sql="select id , name , age , gender , class as classes from students;";
         List<Student> studentList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Student.class));
         System.out.println("studentList = " + studentList);
+    }
+
+    //测试完整三层架构
+    @Test
+    public void testAll(){
+        ClassPathXmlApplicationContext cpac = new ClassPathXmlApplicationContext("spring02.xml");
+        StudentController controller = cpac.getBean(StudentController.class);
+        controller.findAll();
+        cpac.close();
     }
 }

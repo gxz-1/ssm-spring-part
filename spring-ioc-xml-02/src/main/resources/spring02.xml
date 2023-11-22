@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 此处要添加一些约束，配置文件的标签并不是随意命名 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    https://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+    <!-- 0. 读取sql的配置文件  -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <!-- 1.用注解的方式添加jDruidDataSource到ioc容器中 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="url" value="${gxz.url}"/>
+        <property name="driverClassName" value="${gxz.driver}"/>
+        <property name="username" value="${gxz.username}"/>
+        <property name="password" value="${gxz.password}"/>
+    </bean>
+    <!-- 2.用注解的方式添加JdbcTemplate到ioc容器中 -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" >
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!--  3.注入-->
+    <!--  3.1 dao层配置jdbcTemplate -->
+    <bean id="dao" class="com.gxz.dao.StudentDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    <!--  3.2 service层配置dao -->
+    <bean id="service" class="com.gxz.service.StudentServiceImpl">
+        <property name="studentDao" ref="dao"/>
+    </bean>
+    <!--  3.3 controller层配置service -->
+    <bean id="controller" class="com.gxz.Controller.StudentController">
+        <property name="studentService" ref="service"/>
+    </bean>
+</beans>
