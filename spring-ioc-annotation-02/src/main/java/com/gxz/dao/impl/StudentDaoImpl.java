@@ -1,24 +1,22 @@
-package com.gxz.dao;
+package com.gxz.dao.impl;
 
+import com.gxz.dao.StudentDao;
 import com.gxz.pojo.Student;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
-
-public class StudentDaoImpl implements StudentDao{
+@Repository
+public class StudentDaoImpl implements StudentDao {
+    @Autowired
     private JdbcTemplate jdbcTemplate;
-    //提供给ioc容器注入JdbcTemplate
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     @Override
     public List<Student> queryAll() {
-        String sql="select id , name , age , gender , class as classes from students;";
+        String sql = "select id , name , age , gender , class as classes from students ;";
         List<Student> studentList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Student.class));
-        System.out.println("连接层从数据库中拿到了数据");
         return studentList;
     }
 }

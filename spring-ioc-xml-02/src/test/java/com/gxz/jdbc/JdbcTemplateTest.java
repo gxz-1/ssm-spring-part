@@ -27,7 +27,7 @@ public class JdbcTemplateTest {
 //        System.out.println(dataSource.getClass().getName());
         return dataSource;
     }
-
+@Test
     public void jdbcTest1(){
         //0.创建jdbc对象
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
@@ -47,7 +47,7 @@ public class JdbcTemplateTest {
         JdbcTemplate jdbcTemplate = cpac.getBean("jdbcTemplate", JdbcTemplate.class);
         //插入数据
         String sql="insert into students (id,name,gender,age,class) values (?,?,?,?,?)";
-        int rows=jdbcTemplate.update(sql,10,"张三","女",19,"依灵儿班");
+        int rows=jdbcTemplate.update(sql,15,"张三","女",19,"依灵儿班");
         System.out.println("rows="+rows);
         //查询单个
         sql="select * from students where id=?;";

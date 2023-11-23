@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--添加外部配置文件-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!--0. 在对应的类上添加注解：@Component、@Controller、@Service、@Repository-->
+    <!--1. 普通配置包扫描:指定ioc容器去哪些包下查找注解类 -->
+    <context:component-scan base-package="com.gxz.ioc_01" />
+
+    <!-- 2.指定包,但是排除某某些注解 -->
+    <context:component-scan base-package="com.gxz" >
+        <!-- 排除包下的注解-->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--3.指定包,指定包含某些注解 -->
+    <!-- use-default-filters="false" 指定包的所有注解先不生效! -->
+    <context:component-scan base-package="com.gxz" use-default-filters="false">
+        <!-- 只扫描包下的注解 -->
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+    </context:component-scan>
+
+</beans>
