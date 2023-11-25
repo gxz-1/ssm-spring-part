@@ -24,20 +24,13 @@ public class MyAdvice {
         String strmodifiers = Modifier.toString(modifiers);
         //4.获取参数列表
         Object[] args = joinPoint.getArgs();
-        System.out.println("计算开始了");
     }
     @AfterReturning(value = "com.gxz.pointcut.MyPointCut.myPc()",returning = "result")
-    public void afterCal(Object result){
-        System.out.println("计算成功结束了");
-    }
+    public void afterCal(Object result){}
     @AfterThrowing(value = "com.gxz.pointcut.MyPointCut.myPc()",throwing = "throwable")
-    public void errorCal(Throwable throwable){
-        System.out.println("计算错误了");
-    }
+    public void errorCal(Throwable throwable){}
     @After("com.gxz.pointcut.MyPointCut.myPc()")
-    public void endCal(){
-        System.out.println("不管有没有错,计算结束了");
-    }
+    public void endCal(){}
 
 }
 
