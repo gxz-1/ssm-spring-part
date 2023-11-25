@@ -16,6 +16,7 @@
         <module>spring-ioc-class-01</module>
         <module>Spring-ioc-class-02</module>
         <module>spring-ioc-test</module>
+        <module>spring-aop-annotation-01</module>
     </modules>
 
     <dependencies>
@@ -59,6 +60,12 @@
             <artifactId>spring-test</artifactId>
             <version>6.0.6</version>
             <scope>test</scope>
+        </dependency>
+        <!--导入spring整合aspectj框架的依赖，传递aspectj的依赖，同时aop的依赖已经由spring context传递-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>6.0.6</version>
         </dependency>
     </dependencies>
 
