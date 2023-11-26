@@ -10,7 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-//0.需要在ioc配置类中开启事务注解的支持
+//0. 0.1需要在ioc配置类中开启事务注解的支持 并 0.2添加数据库相应的事务管理器到ioc容器
+// (事务注解是对Aop的再次封装，用aop机制来做事务管理：前置增强中开启事务、返回增强中提交事务、异常增强中回滚事务)
 //1.添加事务@Transactional：加到类上表示类下的所有方法都有、加到方法上表示该方法有事务(注意：方法上的注解会覆盖类上的注解)
 @Transactional(isolation = Isolation.READ_COMMITTED)//2.isolation设置隔离级别
 @Service

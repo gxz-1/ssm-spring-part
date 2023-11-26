@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan("com.gxz")
 @PropertySource("classpath:jdbc.properties")
 //@EnableAspectJAutoProxy//开启aspectj注解支持
-@EnableTransactionManagement//开启事务注解的支持
+@EnableTransactionManagement//0.1开启事务注解的支持
 public class IocConfiguration {
     @Value("${gxz.url}")
     private String url;
@@ -41,7 +41,7 @@ public class IocConfiguration {
         return template;
     }
 
-    //将对应的事务管理器加入ioc容器
+    //0.2将对应的事务管理器加入ioc容器
     @Bean
     public TransactionManager transactionManager(DruidDataSource dataSource){
         //DataSourceTransactionManager事务管理器整合了：JDBC方式、JdbcTemplate方式、Mybatis方式的事务实现
