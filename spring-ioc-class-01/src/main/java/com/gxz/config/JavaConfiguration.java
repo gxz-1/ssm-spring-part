@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 @Configuration //0.添加配置类标签
 @ComponentScan(value = "com.gxz.ioc_01") //1.指定扫描的包
-//@ComponentScan({"com.gxz.ioc_01","com.gxz.ioc_01"}) value可省略且可以添加多个包
+//@ComponentScan({"com.gxz.ioc_01","com.gxz.ioc_01"}) value关键字可省略且可以添加多个包
 @PropertySource(value = "classpath:jdbc.properties") //2.引用外部配置类
 public class JavaConfiguration {
 
